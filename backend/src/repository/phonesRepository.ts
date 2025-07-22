@@ -1,21 +1,80 @@
 import { phonesInterface } from "../interfaces/phoneInterface";
 import { phonesRepositoryInterface } from "../interfaces/phonesRepositoryInterface";
+import { phonesModel } from "../models/phoneModel";
 
 export class phonesRepositoryService implements phonesRepositoryInterface {
+
+    private model : typeof phonesModel
+
+    constructor (
+        model : typeof phonesModel
+    ){
+        this.model = model
+    }
     
-    getById(id: string): Promise<phonesInterface> {
-        throw new Error("Method not implemented.");
+    async getById(id: string): Promise<phonesInterface> {
+
+        try {
+            
+            const response = await this.model.findById(id)
+
+            return response!
+
+        } catch (error) {
+            
+            throw new Error (error as string)
+        }
     }
-    getAll(): Promise<phonesInterface[]> {
-        throw new Error("Method not implemented.");
+    async getAll(): Promise<phonesInterface[]> {
+        
+        try {
+            
+            const response = await this.model.find()
+
+            return response
+
+        } catch (error) {
+            
+            throw new Error (error as string)
+        }
     }
-    create(data: string): Promise<phonesInterface> {
-        throw new Error("Method not implemented.");
+   async create(data: string): Promise<phonesInterface> {
+
+        try {
+            
+            const response = await this.model.create(data)
+
+            return response
+
+        } catch (error) {
+            
+            throw new Error (error as string)
+        }
     }
-    updateById(id: string, data: string): Promise<Partial<phonesInterface>> {
-        throw new Error("Method not implemented.");
+    async updateById(id: string, data: Partial<phonesInterface>): Promise<Partial<phonesInterface>> {
+
+        try {
+            
+            const response = await this.model.findByIdAndUpdate(id, data)
+
+            return response!
+
+        } catch (error) {
+
+            throw new Error (error as string)
+        }
     }
-    deleteById(id: string): Promise<Partial<phonesInterface>> {
-        throw new Error("Method not implemented.");
+    async deleteById(id: string): Promise<Partial<phonesInterface>> {
+
+        try {
+            
+            const response = await this.model.findByIdAndDelete(id)
+
+            return response!
+
+        } catch (error) {
+            
+            throw new Error (error as string)
+        }
     }
 }
