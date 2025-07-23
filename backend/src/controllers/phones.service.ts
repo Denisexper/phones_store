@@ -72,11 +72,17 @@ export class phonesControllerServie {
             })
         } catch (error) {
             
-            res.status(500).json({
-
-                msj:"uknow error",
-                error: error instanceof Error
-            })
+            if (error instanceof Error) {
+                res.status(500).json({
+                msj: "Unknown error",
+                error: error.message, // aquí verás el mensaje detallado
+            });
+            } else {
+                res.status(500).json({
+                msj: "Unknown error",
+                error: error, // por si no es instancia de Error
+            });
+    }
 
         }
     }
@@ -100,7 +106,7 @@ export class phonesControllerServie {
             res.status(500).json({
 
                 msj: "uknow error",
-                error: error instanceof Error
+                error: error as string
             })
         }
     }

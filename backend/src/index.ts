@@ -1,7 +1,11 @@
 import {connect} from "mongoose"
-import express from "express"
+import express, { Router, json } from "express"
 import { Enviroments } from "./utils/Enviroments.service"
-
+import { phonesRoutes } from "./routes/phonesRoutes"
+import { phonesRepositoryService } from "./repository/phonesRepository"
+import { phonesModel } from "./models/phoneModel"
+import { phonesControllerServie } from "./controllers/phones.service"
+import cors from "cors"
 class server {
 
     private server : typeof express.application
@@ -10,10 +14,11 @@ class server {
     constructor (
         server : typeof express.application,
 
-        port : typeof Enviroments.PORT
+        port : typeof Enviroments.PORT,
+        
     ){
         this.port = port,
-        this.server = server
+        this.server = server   
     }
 
 
@@ -30,6 +35,23 @@ class server {
         }
     }
 
+    initServices () {
+
+        const repository = new phonesRepositoryService (phonesModel)
+
+        const controller = new phonesControllerServie(repository)
+
+        const routes = new phonesRoutes(controller, Router())
+
+        this.server.use(json())
+
+        this.server.use(cors())
+
+        //iniciamos el servidor
+        this.server.use("/api", routes.initRoutes())
+
+    }
+
     initServer () {
 
         try {
@@ -43,8 +65,11 @@ class server {
             throw new Error(error as string)
         }
     }
+
+    
 }
 
 const Server = new server(express(), Enviroments.PORT)
 Server.mongoService()
+Server.initServices()
 Server.initServer()

@@ -30,7 +30,7 @@ const phonesSchema = new Schema<phonesInterface>({
 
     imgUrl: {
         type: String,
-        requried: [true, "img is required"]
+        requiried: [true, "img is required"]
     }
 
 
