@@ -7,6 +7,7 @@ import type { PhonesI } from "../interface/phonesInterface"
 
 export const useHandlePhones = () => {
 
+    //get phones service
     const [ phones, setPhones ] = useState<PhonesI[]>([])
 
     const getAllPhones = useCallback(async () => {
@@ -17,16 +18,29 @@ export const useHandlePhones = () => {
 
         console.log("dataPhones:", dataPhones);
 
-        setPhones(dataPhones.items)
+        setPhones(dataPhones)
 
-    }, []);
+    }, []); 
+
+    //delete phones service
+    const deletePhone = useCallback(async (id: string) =>{
+
+        const service = phonesService()
+
+        await service.deletePhone(id)
+
+        getAllPhones()
+
+    },[])
 
     useEffect (() => {
 
         getAllPhones();
+        
     }, [])
 
     return {
         phones,
+        deletePhone,
     }
 }

@@ -1,11 +1,7 @@
 
-export interface PhonesRequest {
-    items : PhonesI[],
-}
 
 export interface PhonesI {
-
-    id?: string;
+    _id: string;
     name: string;
     model : string;
     ram: number;
