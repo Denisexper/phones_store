@@ -1,5 +1,6 @@
 import { useHandlePhones } from "./hooks/useHandlePhones"
 import Buttoms  from "./componentes/buttomComponents";
+
 const App = () => {
 
   const { phones, deletePhone } = useHandlePhones();
@@ -11,6 +12,7 @@ const App = () => {
 
 
   return (
+    <>
     <div className="grid grid-cols-4 gap-2">
       {
         phones.map((item) => (
@@ -40,6 +42,7 @@ const App = () => {
         ))
       }
     </div>
+  </>
   )
 }
 
