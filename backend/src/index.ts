@@ -6,6 +6,7 @@ import { phonesRepositoryService } from "./repository/phonesRepository"
 import { phonesModel } from "./models/phoneModel"
 import { phonesControllerServie } from "./controllers/phones.service"
 import cors from "cors"
+
 class server {
 
     private server : typeof express.application

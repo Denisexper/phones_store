@@ -8,7 +8,7 @@ const Buttoms = (props : Props) => {
 
     <>
         <button
-            className="btn hover:bg-gray-600 transition"
+            className="btn btn-error hover:bg-amber-100 transition"
             {...props}
         >
             {props.children}
