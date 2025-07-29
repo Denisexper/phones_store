@@ -1,6 +1,7 @@
 import { useHandlePhones } from "../hooks/useHandlePhones"
 import Buttoms  from "../componentes/buttomComponents";
 
+
 const Home = () => {
 
   const { phones, deletePhone } = useHandlePhones();
@@ -13,14 +14,14 @@ const Home = () => {
 
   return (
     <>
-    <div className="grid grid-cols-4 gap-2">
+    <div className="mt-1 grid grid-cols-4 gap-2">
       {
         phones.map((item) => (
 
           <div className="card card-body bg-amber-50 text-black" key={item._id}>
-           <p>{item.name}</p>
-           <p>{item.model}</p>
-           <p>{item.price}</p>
+           <p className="font-medium text-2xl">{item.name}</p>
+           <p> <span className="font-semibold">Modelo: </span>{item.model}</p>
+           <p> <span className="font-semibold">Precio: </span> {item.price}</p>
            <img className="w-50 h-50 rounded-2xl shadow" src={item.imgUrl} alt={item.imgUrl}/>
 
             <div className="flex justify-items-normal gap-8">
