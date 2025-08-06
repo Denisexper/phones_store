@@ -19,7 +19,7 @@ export class phonesControllerServie {
 
         try {
             
-            const reposne = await this.repository.getById(id)
+            const response = await this.repository.getById(id)
 
             res.status(200).json({
                 msj: "phones get sucessfully",

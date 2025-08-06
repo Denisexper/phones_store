@@ -9,7 +9,7 @@ export interface phonesRepositoryInterface {
 
     create(data: string) : Promise<phonesInterface>
 
-    updateById(id: string, data: Partial<phonesInterface>) : Promise<Partial<phonesInterface>>
+    updateById(id: string, data: Partial<phonesInterface>) : Promise<phonesInterface>
 
     deleteById(id: string) : Promise<Partial<phonesInterface>>
 }

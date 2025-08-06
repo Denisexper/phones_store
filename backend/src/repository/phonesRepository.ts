@@ -51,7 +51,7 @@ export class phonesRepositoryService implements phonesRepositoryInterface {
             throw new Error (error as string)
         }
     }
-    async updateById(id: string, data: Partial<phonesInterface>): Promise<Partial<phonesInterface>> {
+    async updateById(id: string, data: Partial<phonesInterface>): Promise<phonesInterface> {
 
         try {
             

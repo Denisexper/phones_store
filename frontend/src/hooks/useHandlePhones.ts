@@ -9,7 +9,7 @@ export const useHandlePhones = () => {
 
     //get phones service
     const [ phones, setPhones ] = useState<PhonesI[]>([])
-    const [ singlePhone, setSinglePhone ] = useState<PhonesI | null>(null)
+    
 
     const getAllPhones = useCallback(async () => {
 
@@ -30,6 +30,21 @@ export const useHandlePhones = () => {
 
         const phone = await service.getByIdPhone(id)
 
+        return phone
+
+
+    }, [])
+
+    //create phones
+    const createPhones = useCallback(async (data: PhonesI) => {
+
+        const service = phonesService()
+
+        const response = await service.createPhone(data)
+
+        return response
+
+        getAllPhones
 
     }, [])
 
@@ -65,8 +80,8 @@ export const useHandlePhones = () => {
         phones,
         deletePhone,
         updatePhones,
-        singlePhone,
         getPhoneId,
+        createPhones,
 
     }
 }
