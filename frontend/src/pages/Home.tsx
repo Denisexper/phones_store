@@ -1,10 +1,13 @@
 import { useHandlePhones } from "../hooks/useHandlePhones"
-import Buttoms  from "../componentes/buttomComponents";
+import Buttoms from "../componentes/buttomComponents";
+import { useState } from "react";
+import CreateModal from "../modals/CreateModal";
 
 
 const Home = () => {
 
   const { phones, deletePhone } = useHandlePhones();
+  const [open, setOpen] = useState<boolean>(false)
 
   const deletePho = (id: string) => {
 
@@ -14,36 +17,56 @@ const Home = () => {
 
   return (
     <>
-    <div className="mt-1 grid grid-cols-4 gap-2">
-      {
-        phones.map((item) => (
 
-          <div className="card card-body bg-amber-50 text-black" key={item._id}>
-           <p className="font-medium text-2xl">{item.name}</p>
-           <p> <span className="font-semibold">Modelo: </span>{item.model}</p>
-           <p> <span className="font-semibold">Precio: </span> {item.price}</p>
-           <img className="w-50 h-50 rounded-2xl shadow" src={item.imgUrl} alt={item.imgUrl}/>
+      <nav className="bg-blue-100 gap-5 w-full justify-between flex p-5">
+        <h1 className="text-black text-3xl font-bold"> Phones Store</h1>
+        <div>
+          <button
+            onClick={() => setOpen(true)}
+            className="btn btn-primary"
+          >
+            Post!
+          </button>
 
-            <div className="flex justify-items-normal gap-8">
-              <button
-              type="button"
-              className="btn btn-ghost"
-              >
-                Actualizar
-              </button>
+          <CreateModal open={open} onClose={() => { setOpen(false) }}
+          >
+            You can create phones here!
+            we are working on it!
+          </CreateModal>
+        </div>
 
-              <Buttoms
-              onClick={() => deletePho(item._id)}
-              >
-                Eliminar
-              </Buttoms>
+      </nav>
+      <div className="mt-1 grid grid-cols-4 gap-2">
+
+        {
+          phones.map((item) => (
+
+            <div className="card card-body bg-amber-50 text-black" key={item._id}>
+              <p className="font-medium text-2xl">{item.name}</p>
+              <p> <span className="font-semibold">Modelo: </span>{item.model}</p>
+              <p> <span className="font-semibold">Precio: </span> {item.price}</p>
+              <img className="w-50 h-50 rounded-2xl shadow" src={item.imgUrl} alt={item.imgUrl} />
+
+              <div className="flex justify-items-normal gap-8">
+                <button
+                  type="button"
+                  className="btn btn-ghost"
+                >
+                  Actualizar
+                </button>
+
+                <Buttoms
+                  onClick={() => deletePho(item._id)}
+                >
+                  Eliminar
+                </Buttoms>
+              </div>
+
             </div>
-
-          </div>
-        ))
-      }
-    </div>
-  </>
+          ))
+        }
+      </div>
+    </>
   )
 }
 
