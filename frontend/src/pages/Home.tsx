@@ -6,12 +6,34 @@ import CreateModal from "../modals/CreateModal";
 
 const Home = () => {
 
-  const { phones, deletePhone } = useHandlePhones();
+  const { phones, deletePhone, createPhones } = useHandlePhones();
   const [open, setOpen] = useState<boolean>(false)
+
+  //Estados de inputs para crear
+  const [name, setName] = useState("")
+  const [model, setModel] = useState("");
+  const [price, setPrice] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   const deletePho = (id: string) => {
 
     deletePhone(id)
+  }
+
+  const createPhone = () => {
+
+     createPhones({
+      name,
+      model,
+      price: Number(price),
+      imgUrl: imageUrl
+    });
+
+    //limpiar inputs
+    setName("");
+    setModel("");
+    setPrice("");
+    setImageUrl("");
   }
 
 
@@ -30,8 +52,47 @@ const Home = () => {
 
           <CreateModal open={open} onClose={() => { setOpen(false) }}
           >
-            You can create phones here!
-            we are working on it!
+            <h2 className="gap-5 p-4 font-bold">CREATE PHONE</h2>
+            <div className="grid grid-cols-2 gap-4">
+
+              <input 
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Name"
+                className="border p-2 rounded placeholder-gray-400"
+              />
+
+              <input type="text"
+                value={model}
+                onChange={(e) => setModel(e.target.value)}
+                placeholder="Model"
+                className="border p-2 placeholder-gray-400"
+              />
+
+              <input type="text"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                placeholder="Price"
+                className="border p-2 placeholder-gray-400"
+              />
+
+              <input
+                type="text"
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+                placeholder="Image URL"
+                className="border p-2 rounded"
+              />
+
+              <button
+                className="btn btn-primary text-2xl justify-center"
+                onClick={createPhone}
+              >
+                Create
+              </button>
+
+            </div>
           </CreateModal>
         </div>
 

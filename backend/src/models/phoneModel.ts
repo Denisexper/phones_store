@@ -15,12 +15,10 @@ const phonesSchema = new Schema<phonesInterface>({
 
     ram: {
         type: Number,
-        required: [true, "ram is required"]
     },
 
     storage: {
         type: Number,
-        required: [true, "storage is required"]
     },
 
     price: {
