@@ -13,3 +13,19 @@ export interface phonesRepositoryInterface {
 
     deleteById(id: string) : Promise<Partial<phonesInterface>>
 }
+
+
+export interface phonesRepositoryInterface2 {
+
+    getAll() : Promise<phonesInterface[]>
+
+    getById (id: string) : Promise<phonesInterface>
+
+    create (data: Partial<phonesInterface>) : Promise<phonesInterface>
+
+    update (id: string, data: Partial<phonesInterface>) : Promise<phonesInterface>
+
+    delete(id: string) : Promise<phonesInterface>
+}
+
+//PARTIAL: toma todas lasl propiedades de un tipo y las vuelve opcionales
