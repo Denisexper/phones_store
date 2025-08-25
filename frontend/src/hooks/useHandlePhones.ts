@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import { phonesService } from "../services/api/phones.service"
-import type { PhonesI } from "../interface/phonesInterface"
+import type { PhonesI, PhonesII } from "../interface/phonesInterface"
 
 
 
@@ -8,7 +8,7 @@ import type { PhonesI } from "../interface/phonesInterface"
 export const useHandlePhones = () => {
 
     //get phones service
-    const [ phones, setPhones ] = useState<PhonesI[]>([])
+    const [ phones, setPhones ] = useState<PhonesII[]>([])
     
 
     const getAllPhones = useCallback(async () => {
@@ -49,7 +49,7 @@ export const useHandlePhones = () => {
     }, [])
 
     //update phone service
-    const updatePhones = useCallback(async (id: string, data: PhonesI) => {
+    const updatePhones = useCallback(async (id: string, data: PhonesII) => {
 
         const service = phonesService()
 

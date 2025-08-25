@@ -1,7 +1,6 @@
 
-
+//para crear un nuevo telefono  no necesitamos id
 export interface PhonesI {
-    _id?: string;
     name: string;
     model : string;
     ram?: number;
@@ -9,4 +8,15 @@ export interface PhonesI {
     price : number;
     imgUrl : string;
 
+}
+
+// Para teléfonos que ya existen en la DB (con _id)
+export interface PhonesII {
+    _id: string;
+    name: string;
+    model: string;
+    price: number;
+    imgUrl: string;
+    ram?: number;
+    storage?: number;
 }

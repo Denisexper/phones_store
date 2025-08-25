@@ -1,11 +1,11 @@
 
-import type { PhonesI } from "../../interface/phonesInterface";
+import type { PhonesI, PhonesII } from "../../interface/phonesInterface";
 import { axiosClient } from "../axiosClient.service";
 
 
 export const phonesService = () => ({
 
-    async getAllPhones () : Promise<PhonesI[]> {
+    async getAllPhones () : Promise<PhonesII[]> {
 
         try {
             
@@ -47,7 +47,7 @@ export const phonesService = () => ({
         }
     },
 
-    async updatePhone (id: string, data: PhonesI) {
+    async updatePhone (id: string, data: PhonesII) {
 
         try {
             
