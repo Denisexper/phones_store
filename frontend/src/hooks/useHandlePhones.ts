@@ -42,9 +42,10 @@ export const useHandlePhones = () => {
 
         const response = await service.createPhone(data)
 
+        getAllPhones()
+
         return response
 
-        getAllPhones
 
     }, [])
 
@@ -53,10 +54,12 @@ export const useHandlePhones = () => {
 
         const service = phonesService()
 
-        await service.updatePhone(id, data)
-
+        const response = await service.updatePhone(id, data)
 
         getAllPhones()
+
+        return response
+
     }, [])
 
     //delete phones service
@@ -64,9 +67,11 @@ export const useHandlePhones = () => {
 
         const service = phonesService()
 
-        await service.deletePhone(id)
+        const response = await service.deletePhone(id)
 
         getAllPhones()
+
+        return response
 
     },[])
 
